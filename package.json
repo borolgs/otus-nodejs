@@ -1,0 +1,12 @@
+{
+  "name": "show-as-tree",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "example": "node index.js example",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
