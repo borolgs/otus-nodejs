@@ -5,7 +5,7 @@ const path = require('path');
 const draw = require('./drawTree');
 const yargs = require('yargs');
 
-const checkDirectoryPath = dirpath => {
+const checkDirectoryPath = (dirpath) => {
   if (!fs.existsSync(dirpath)) {
     throw new Error(`Directory "${dirpath}" does not exists!`);
   }
@@ -22,10 +22,7 @@ const run = async () => {
       .describe('d', 'Show depth')
       .demand(1, 'Specifiy directory path!')
       .example('tree .', 'Show current directory')
-      .example(
-        'tree path/to/directory -d=2',
-        'Show specified directory with limit the depth'
-      );
+      .example('tree path/to/directory -d=2', 'Show specified directory with limit the depth');
 
     const dir = path.resolve(argv._[0]);
     console.log('dir', dir);

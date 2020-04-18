@@ -7,10 +7,10 @@ const blocks = {
   last: '└── ',
   middle: '├── ',
   bo: '│   ',
-  void: '    '
+  void: '    ',
 };
 
-const getNextBlock = block => {
+const getNextBlock = (block) => {
   switch (block) {
     case blocks.root:
       return blocks.root;
@@ -23,10 +23,9 @@ const getNextBlock = block => {
 
 dir_colors = ['green', 'yellow', 'cyan', 'magenta'];
 
-const colorize = (str, depth) =>
-  colors[dir_colors[depth % dir_colors.length]](str);
+const colorize = (str, depth) => colors[dir_colors[depth % dir_colors.length]](str);
 
-const isFile = filepath => {
+const isFile = (filepath) => {
   if (!fs.existsSync(filepath)) {
     return true;
   }
@@ -35,7 +34,7 @@ const isFile = filepath => {
 
 const drawTree = (dirpath, depthLimit = 3) => {
   let tree = '\n';
-  const updateTree = row => (tree += row + '\n');
+  const updateTree = (row) => (tree += row + '\n');
 
   (function walk(filepath, block = blocks.root, row = []) {
     const depth = row.length;
