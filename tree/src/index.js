@@ -1,15 +1,7 @@
 #!/usr/bin/env node
-
-const fs = require('fs');
 const path = require('path');
-const draw = require('./drawTree');
 const yargs = require('yargs');
-
-const checkDirectoryPath = (dirpath) => {
-  if (!fs.existsSync(dirpath)) {
-    throw new Error(`Directory "${dirpath}" does not exists!`);
-  }
-};
+const { Tree } = require('./tree');
 
 const run = async () => {
   try {
@@ -25,11 +17,9 @@ const run = async () => {
       .example('tree path/to/directory -d=2', 'Show specified directory with limit the depth');
 
     const dir = path.resolve(argv._[0]);
-    console.log('dir', dir);
-    checkDirectoryPath(dir);
     const { depth } = argv;
-
-    console.log(draw(dir, depth));
+    const tree = new Tree();
+    console.log(tree.draw(dir, depth))
   } catch (error) {
     console.log(error);
   }
