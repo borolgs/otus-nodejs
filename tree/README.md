@@ -22,5 +22,5 @@ Show current directory
 Show specified directory  
 `tree path/to/directory`
 
-Show specified directory with limit the depth
+Show specified directory with limit the depth  
 `tree path/to/directory -d=3`
