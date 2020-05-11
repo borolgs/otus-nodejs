@@ -1,0 +1,58 @@
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        {{title}}
+        <button class="button is-info">
+          <span class="icon">
+            <i class="fas fa-edit"></i>
+          </span>
+        </button>
+      </h1>
+    </div>
+  </div>
+</section>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        <div class="column content">
+          <p class="split-on-newlines">{{description}}</p>
+          <button class="button is-info is-outlined">
+            <span class="icon">
+              <i class="fas fa-edit"></i>
+            </span>
+            <span>Edit</span>
+          </button>
+        </div>
+        <div class="column">
+          <nav class="panel">
+            <p class="panel-heading">
+              Lessions
+            </p>
+            {{#each lessions}}
+            <div class="panel-block">
+              <span class="panel-icon">
+                <a>
+                  <i class="fas fa-edit" aria-hidden="true"></i>
+                </a>
+              </span>
+              <span class="panel-icon">
+                <a href="/lessions/{{@index}}" target="_blank">
+                  <i class="fas fa-eye" aria-hidden="true"></i>
+                </a>
+              </span>
+              {{this}}
+            </div>
+            {{/each}}
+            <div class="panel-block">
+              <button class="button is-link is-outlined is-fullwidth">
+                Add
+              </button>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
