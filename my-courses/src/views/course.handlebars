@@ -1,0 +1,28 @@
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        {{title}}
+      </h1>
+    </div>
+  </div>
+</section>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="content">
+        <h1>
+          About this course
+        </h1>
+        <p class="split-on-newlines">{{description}}</p>
+        <button class="button is-info is-outlined">Join</button>
+        <h1>Course content</h1>
+        <ol>
+          {{#each lessions}}
+          <li><a href="/lessions/{{@index}}">{{this}}</a></li>
+          {{/each}}
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
