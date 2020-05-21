@@ -16,11 +16,14 @@
         </h1>
         <p class="split-on-newlines">{{description}}</p>
         <button class="button is-info is-outlined">Join</button>
+        <a class="button is-outlined" href="/courses/{{id}}/edit">Edit</a>
         <h1>Course content</h1>
         <ol>
+
           {{#each lessions}}
-          <li><a href="/lessions/{{@index}}">{{this}}</a></li>
+          <li><a href="/courses/{{course}}/lessions/{{id}}">{{title}}</a></li>
           {{/each}}
+
         </ol>
       </div>
     </div>

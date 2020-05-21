@@ -3,7 +3,7 @@
     <div class="container">
       <h1 class="title">
         {{title}}
-        <button class="button is-info">
+        <button class="button is-info" onclick="show('edit-course')">
           <span class="icon">
             <i class="fas fa-edit"></i>
           </span>
@@ -18,7 +18,7 @@
       <div class="columns">
         <div class="column content">
           <p class="split-on-newlines">{{description}}</p>
-          <button class="button is-info is-outlined">
+          <button class="button is-info is-outlined" onclick="show('edit-course')">
             <span class="icon">
               <i class="fas fa-edit"></i>
             </span>
@@ -33,20 +33,41 @@
             {{#each lessions}}
             <div class="panel-block">
               <span class="panel-icon">
-                <a>
+                <a onclick="show('edit-lession')">
                   <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
               </span>
               <span class="panel-icon">
-                <a href="/lessions/{{@index}}" target="_blank">
+                <a href="/courses/{{course}}/lessions/{{id}}" target="_blank">
                   <i class="fas fa-eye" aria-hidden="true"></i>
                 </a>
               </span>
-              {{this}}
+              {{title}}
+            </div>
+            <div id="edit-lession" class="modal">
+              <div class="modal-background"></div>
+              <div class="modal-content">
+                <form class="box" method="post" action="lessions/{{id}}/edit">
+                  <div class="field">
+                    <div class="control has-icons-left">
+                      <input name="title" type="text" class="input" placeholder="Title" required value="{{title}}">
+                      <span class="icon is-small is-left">
+                        <i class="fa fa-heading"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <button class="button is-info">
+                      Update
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <button class="modal-close is-large" aria-label="close" onclick="hide('edit-lession')"></button>
             </div>
             {{/each}}
             <div class="panel-block">
-              <button class="button is-link is-outlined is-fullwidth">
+              <button class="button is-link is-outlined is-fullwidth" onclick="show('add-lession')">
                 Add
               </button>
             </div>
@@ -56,3 +77,52 @@
     </div>
   </div>
 </section>
+
+<div id="edit-course" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <form class="box" method="post">
+      <div class="field">
+        <div class="control has-icons-left">
+          <input name="title" type="text" class="input" placeholder="Title" required value="{{title}}">
+          <span class="icon is-small is-left">
+            <i class="fa fa-heading"></i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control has-icons-left">
+          <textarea name="description" class="textarea" rows="5">{{description}}</textarea>
+        </div>
+      </div>
+      <div class="field">
+        <button class="button is-info">
+          Update
+        </button>
+      </div>
+    </form>
+  </div>
+  <button class="modal-close is-large" aria-label="close" onclick="hide('edit-course')"></button>
+</div>
+
+<div id="add-lession" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <form class="box" method="post" action="lessions">
+      <div class="field">
+        <div class="control has-icons-left">
+          <input name="title" type="text" class="input" placeholder="Title" required>
+          <span class="icon is-small is-left">
+            <i class="fa fa-heading"></i>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <button class="button is-success">
+          Create Lession
+        </button>
+      </div>
+    </form>
+  </div>
+  <button class="modal-close is-large" aria-label="close" onclick="hide('add-lession')"></button>
+</div>
