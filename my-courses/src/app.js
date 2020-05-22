@@ -37,14 +37,11 @@ app.use(lessons);
 
 app.use((req, res, next) => {
   res.status(404);
-
-  if (req.accepts('html')) {
+  if (req.headers['content-type'] === 'application/json') {
+    res.send({ error: 'Not found' });
+  } else {
     res.render('404', { url: req.url });
-    return;
   }
-
-  res.send({ error: 'Not found' });
-  return;
 });
 
 app.use(errorHandler);
