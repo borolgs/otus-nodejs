@@ -4,15 +4,15 @@ const app = require('./app');
 const connectDB = require('./db');
 
 async function start() {
-  await connectDB();
-  app.listen(port, () => {
-    console.log(`Server running on port ${port}`.blue.underline.bold);
-  });
+  try {
+    await connectDB();
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`.blue.underline.bold);
+    });
+  } catch (error) {
+    console.log(`Error: ${error.message}`.red);
+    process.exit(1);
+  }
 }
-
-process.on('uncaughtException', err => {
-  console.log(`Error: ${err.message}`.red);
-  server.close(() => process.exit(1));
-});
 
 start();
