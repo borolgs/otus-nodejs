@@ -1,31 +1,24 @@
 const express = require('express');
-const {
-  getLesson,
-  getLessons,
-  createLesson,
-  updateLesson,
-  deleteLesson,
-  getLessonView,
-  createLessonView,
-  updateLessonView,
-} = require('../controllers/lessons');
+
+const apiController = require('../controllers/lessons/api');
+const viewController = require('../controllers/lessons/views');
 const withCourse = require('../middlware/withCourse');
 
 const router = express.Router();
 
-router.get('/courses/:courseId/lessons/:id', withCourse, getLessonView);
-router.post('/courses/:courseId/lessons', withCourse, createLessonView);
-router.post('/courses/:courseId/lessons/:id/edit', withCourse, updateLessonView);
+router.get('/courses/:courseId/lessons/:id', withCourse, viewController.getLesson);
+router.post('/courses/:courseId/lessons', withCourse, viewController.createLesson);
+router.post('/courses/:courseId/lessons/:id/edit', withCourse, viewController.updateLesson);
 
 router
   .route('/api/v1/courses/:courseId/lessons')
-  .get(withCourse, getLessons)
-  .post(withCourse, createLesson);
+  .get(withCourse, apiController.getLessons)
+  .post(withCourse, apiController.createLesson);
 
 router
   .route('/api/v1/courses/:courseId/lessons/:id')
-  .get(withCourse, getLesson)
-  .patch(withCourse, updateLesson)
-  .delete(withCourse, deleteLesson);
+  .get(withCourse, apiController.getLesson)
+  .patch(withCourse, apiController.updateLesson)
+  .delete(withCourse, apiController.deleteLesson);
 
 module.exports = router;

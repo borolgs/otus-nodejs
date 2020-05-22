@@ -1,40 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const {
-  getCourse,
-  getCourses,
-  createCourse,
-  updateCourse,
-  deleteCourse,
-  getCoursesView,
-  getCourseView,
-  createCourseView,
-  editCourseView,
-  updateCourseView,
-} = require('../controllers/courses');
+const apiController = require('../controllers/courses/api');
+const viewController = require('../controllers/courses/views');
 
-router.get('/courses', getCoursesView);
+router.get('/courses', viewController.getCourses);
 
 router
   .route('/courses/create')
   .get((req, res) => {
     res.render('create-course', {});
   })
-  .post(createCourseView);
+  .post(viewController.createCourse);
 
-router.get('/courses/:id', getCourseView);
-router.get('/courses/:id/edit', editCourseView);
-router.post('/courses/:id/edit', updateCourseView);
+router.get('/courses/:id', viewController.getCourse);
+router.get('/courses/:id/edit', viewController.editCourse);
+router.post('/courses/:id/edit', viewController.updateCourse);
 
 router
   .route('/api/v1/courses')
-  .get(getCourses)
-  .post(createCourse);
+  .get(apiController.getCourses)
+  .post(apiController.createCourse);
 
 router
   .route('/api/v1/courses/:id')
-  .get(getCourse)
-  .patch(updateCourse)
-  .delete(deleteCourse);
+  .get(apiController.getCourse)
+  .patch(apiController.updateCourse)
+  .delete(apiController.deleteCourse);
 
 module.exports = router;
