@@ -28,26 +28,26 @@
         <div class="column">
           <nav class="panel">
             <p class="panel-heading">
-              Lessions
+              Lessons
             </p>
-            {{#each lessions}}
+            {{#each lessons}}
             <div class="panel-block">
               <span class="panel-icon">
-                <a onclick="show('edit-lession')">
+                <a onclick="show('edit-lesson')">
                   <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
               </span>
               <span class="panel-icon">
-                <a href="/courses/{{course}}/lessions/{{id}}" target="_blank">
+                <a href="/courses/{{course}}/lessons/{{id}}" target="_blank">
                   <i class="fas fa-eye" aria-hidden="true"></i>
                 </a>
               </span>
               {{title}}
             </div>
-            <div id="edit-lession" class="modal">
+            <div id="edit-lesson" class="modal">
               <div class="modal-background"></div>
               <div class="modal-content">
-                <form class="box" method="post" action="lessions/{{id}}/edit">
+                <form class="box" method="post" action="lessons/{{id}}/edit">
                   <div class="field">
                     <div class="control has-icons-left">
                       <input name="title" type="text" class="input" placeholder="Title" required value="{{title}}">
@@ -63,11 +63,11 @@
                   </div>
                 </form>
               </div>
-              <button class="modal-close is-large" aria-label="close" onclick="hide('edit-lession')"></button>
+              <button class="modal-close is-large" aria-label="close" onclick="hide('edit-lesson')"></button>
             </div>
             {{/each}}
             <div class="panel-block">
-              <button class="button is-link is-outlined is-fullwidth" onclick="show('add-lession')">
+              <button class="button is-link is-outlined is-fullwidth" onclick="show('add-lesson')">
                 Add
               </button>
             </div>
@@ -105,10 +105,10 @@
   <button class="modal-close is-large" aria-label="close" onclick="hide('edit-course')"></button>
 </div>
 
-<div id="add-lession" class="modal">
+<div id="add-lesson" class="modal">
   <div class="modal-background"></div>
   <div class="modal-content">
-    <form class="box" method="post" action="lessions">
+    <form class="box" method="post" action="lessons">
       <div class="field">
         <div class="control has-icons-left">
           <input name="title" type="text" class="input" placeholder="Title" required>
@@ -119,10 +119,10 @@
       </div>
       <div class="field">
         <button class="button is-success">
-          Create Lession
+          Create Lesson
         </button>
       </div>
     </form>
   </div>
-  <button class="modal-close is-large" aria-label="close" onclick="hide('add-lession')"></button>
+  <button class="modal-close is-large" aria-label="close" onclick="hide('add-lesson')"></button>
 </div>

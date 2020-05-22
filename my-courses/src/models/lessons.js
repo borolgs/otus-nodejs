@@ -28,7 +28,7 @@ const Resource = new mongoose.Schema({
   },
 });
 
-const LessionSchema = new mongoose.Schema(
+const LessonSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -63,12 +63,12 @@ const LessionSchema = new mongoose.Schema(
   },
 );
 
-LessionSchema.pre('remove', async function(next) {
+LessonSchema.pre('remove', async function(next) {
   next();
 });
 
-LessionSchema.pre('save', function(next) {
+LessonSchema.pre('save', function(next) {
   next();
 });
 
-module.exports = mongoose.model('Lession', LessionSchema);
+module.exports = mongoose.model('Lesson', LessonSchema);

@@ -26,7 +26,7 @@ const CourseSchema = new mongoose.Schema(
 );
 
 CourseSchema.pre('remove', async function(next) {
-  await this.model('Lession').deleteMany({ course: this._id });
+  await this.model('Lesson').deleteMany({ course: this._id });
   next();
 });
 
@@ -34,8 +34,8 @@ CourseSchema.pre('save', function(next) {
   next();
 });
 
-CourseSchema.virtual('lessions', {
-  ref: 'Lession',
+CourseSchema.virtual('lessons', {
+  ref: 'Lesson',
   localField: '_id',
   foreignField: 'course',
   justOne: false,

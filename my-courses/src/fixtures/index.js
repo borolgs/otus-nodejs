@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const { mongoURI } = require('../config');
 
 const courses = require('./data/courses.json');
-const lessions = require('./data/lessions.json');
+const lessons = require('./data/lessons.json');
 
 const Course = require('../models/courses');
-const Lession = require('../models/lessions');
+const Lesson = require('../models/lessons');
 
 const withMongo = async fn => {
   try {
@@ -26,13 +26,13 @@ const withMongo = async fn => {
 
 const create = async () => {
   await Course.create(courses);
-  await Lession.create(lessions);
+  await Lesson.create(lessons);
   console.log('Data Created...');
 };
 
 const remove = async () => {
   await Course.deleteMany();
-  await Lession.deleteMany();
+  await Lesson.deleteMany();
   console.log('Data Deleted...');
 };
 

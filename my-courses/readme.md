@@ -9,4 +9,4 @@ Create .env file and set MONGO_URI=your/mongo/path
 
 ## API
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/d9ce00a0f5f5a1fbc9a2)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/d54a641f0e3737c56cb8)

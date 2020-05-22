@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const { mode } = require('./config');
 const index = require('./routes/index');
 const courses = require('./routes/courses');
-const lessions = require('./routes/lessions');
+const lessons = require('./routes/lessons');
 const auth = require('./routes/auth');
 const errorHandler = require('./middlware/errorHandler');
 
@@ -33,7 +33,7 @@ app.use(express.static('public'));
 app.use('/', index);
 app.use('/auth', auth);
 app.use(courses);
-app.use(lessions);
+app.use(lessons);
 
 app.use((req, res, next) => {
   res.status(404);

@@ -7,7 +7,7 @@ exports.get = async () => {
 };
 
 exports.getOne = async id => {
-  const course = await Course.findById(id).populate('lessions');
+  const course = await Course.findById(id).populate('lessons');
   if (!course) {
     throw new NotFoundError(`Course not found with id of ${id}`);
   }
