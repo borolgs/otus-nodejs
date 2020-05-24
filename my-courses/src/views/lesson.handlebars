@@ -2,10 +2,12 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        {{courseTitle}}
+        <a href="/courses/{{course.id}}">
+          {{course.title}}
+        </a>
       </h1>
       <h1 class="subtitle">
-        {{title}}
+        {{lesson.title}}
       </h1>
     </div>
   </div>
@@ -15,16 +17,20 @@
     <div class="container">
       <div class="columns">
         <div class="column is-three-fifths">
-          <video width="100%" controls autoplay src="{{video}}">Lession video</video>
+          <video width="100%" controls autoplay src="{{video}}">Lesson video</video>
         </div>
         <div class="column content">
+
           <p>{{description}}</p>
+          {{#if lesson.resources}}
           <h1 class="title is-5">Resourses</h1>
           <ul>
-            {{#each resources}}
-            <li><a href="{{link}}" target="_blank">{{name}}</a></li>
+            {{#each lesson.resources}}
+            <li><a href="{{link}}" target="_blank">{{title}}</a></li>
             {{/each}}
           </ul>
+          {{/if}}
+
         </div>
       </div>
       <div class="column">
@@ -39,16 +45,16 @@
             <div>
               <div class="field">
                 <div class="control">
-                  <textarea class="textarea" placeholder="Add a comment..." rows="2"></textarea>
+                  <textarea class="textarea" id="comment-text" placeholder="Add a comment..." rows="2"></textarea>
                 </div>
               </div>
               <div class="control">
-                <button class="button is-success">Leave a comment</button>
+                <button class="button is-success" onclick="addComment()">Leave a comment</button>
               </div>
             </div>
           </div>
         </div>
-        {{#each comments}}
+        {{#each lesson.comments}}
         <div class="media">
           <figure class="media-left">
             <p class="image is-64x64 is-info">
@@ -58,7 +64,7 @@
           <div class="media-content">
             <div>
               <p>
-                <strong>{{author.name}}</strong> <small>31m</small>
+                <strong>{{author}}</strong> <small>31m</small>
                 <br>
                 {{text}}
               </p>
