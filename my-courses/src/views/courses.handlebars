@@ -21,6 +21,12 @@
             <p>{{description}}</p>
           </a>
           {{/each}}
+          <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a href="?page={{pagination.prev.page}}" class="pagination-previous" {{#unless pagination.prev}} disabled
+              {{/unless}}>Previous</a>
+            <a href="?page={{pagination.next.page}}" class="pagination-next" {{#unless pagination.next}} disabled
+              {{/unless}}>Next</a>
+          </nav>
         </div>
         <div class="tile is-parent">
           <div class="tile is-child">

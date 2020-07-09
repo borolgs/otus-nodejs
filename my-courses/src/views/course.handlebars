@@ -4,6 +4,7 @@
       <h1 class="title">
         {{title}}
       </h1>
+      <h2 class="subtitle">{{author.name}}</h2>
     </div>
   </div>
 </section>
@@ -15,15 +16,26 @@
           About this course
         </h1>
         <p class="split-on-newlines">{{description}}</p>
-        <button class="button is-info is-outlined">Join</button>
+        {{#if user}}
+        {{#if (isAuthor author user)}}
         <a class="button is-outlined" href="/courses/{{id}}/edit">Edit</a>
+        {{else}}
+        {{#unless (isStudent id user)}}
+        <a class="button is-info is-outlined" href="/courses/{{id}}/join">Join</a>
+        {{/unless}}
+        {{/if}}
+        {{/if}}
         <h1>Course content</h1>
         <ol>
-
           {{#each lessons}}
-          <li><a href="/courses/{{course}}/lessons/{{id}}">{{title}}</a></li>
+          {{#if (isStudentOrTeacher ../this)}}
+          <li>
+            <a href="/courses/{{course}}/lessons/{{id}}">{{title}}</a>
+          </li>
+          {{else}}
+          <li>{{title}}</li>
+          {{/if}}
           {{/each}}
-
         </ol>
       </div>
     </div>

@@ -1,4 +1,4 @@
-const asyncHandler = require('../../middlware/asyncHandler');
+const asyncHandler = require('../../middleware/asyncHandler');
 const service = require('../../services/lessons');
 
 exports.getLessons = asyncHandler(async (req, res, next) => {
