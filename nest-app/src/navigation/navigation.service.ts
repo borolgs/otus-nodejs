@@ -1,20 +1,29 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Navigation } from './navigation.interface';
 import * as navigations from '../__mocks__/navigations.json';
+import { InjectModel } from '@nestjs/sequelize';
+import { Navigation } from './navigation.model';
+import { CreateNavigationDto } from './dto/create-navigation.dto';
+import { UpdateNavigationDto } from './dto/update-navigation.dto';
 
 @Injectable()
 export class NavigatonService {
-  private readonly navigations: Navigation[] = navigations;
+  constructor(
+    @InjectModel(Navigation) private navigationModel: typeof Navigation,
+  ) {}
 
-  get(): Navigation[] {
-    return this.navigations;
+  async findAll(): Promise<Navigation[]> {
+    return this.navigationModel.findAll();
   }
 
-  getOne(id: string): Navigation {
-    const nav = this.navigations.find(n => n.id == id);
-    if (!nav) {
-      throw new NotFoundException();
-    }
-    return nav;
+  async finfOne(id: string): Promise<Navigation> {
+    return this.navigationModel.findOne({ where: { id } });
+  }
+
+  async create(navigationDto: CreateNavigationDto): Promise<Navigation> {
+    return this.navigationModel.create(navigationDto);
+  }
+
+  async update(id: string, navigationDto: UpdateNavigationDto): Promise<any> {
+    return this.navigationModel.update(navigationDto, { where: { id } });
   }
 }
