@@ -1,8 +1,11 @@
-const asyncHandler = require('../../middlware/asyncHandler');
+const asyncHandler = require('../../middleware/asyncHandler');
 const service = require('../../services/courses');
+const { defaultPaginationLimit } = require('../../config');
 
 exports.getCourses = asyncHandler(async (req, res, next) => {
-  const courses = await service.get();
+  const page = parseInt(req.query.page, 10) || 1;
+  const limit = parseInt(req.query.limit, 10) || defaultPaginationLimit;
+  const courses = await service.get(page, limit);
   res.status(200).json({ success: true, data: courses });
 });
 
@@ -12,7 +15,7 @@ exports.getCourse = asyncHandler(async (req, res, next) => {
 });
 
 exports.createCourse = asyncHandler(async (req, res, next) => {
-  const course = await service.create(req.body);
+  const course = await service.create({ ...req.body, author: req.user.id });
   res.status(201).json({
     success: true,
     msg: `Course created`,

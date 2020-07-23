@@ -14,6 +14,11 @@ const CourseSchema = new mongoose.Schema(
       trim: true,
       maxlength: [500, 'Decription can not be more than 50 characters'],
     },
+    author: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: [true, 'Author is required!'],
+    },
     createdAt: {
       type: Date,
       default: Date.now,

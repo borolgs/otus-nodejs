@@ -1,13 +1,42 @@
 const Course = require('../models/courses');
 const { NotFoundError } = require('../common/errors');
+const { defaultPaginationLimit, maxPaginationLimit } = require('../config');
 
-exports.get = async () => {
-  const courses = await Course.find();
-  return courses;
+exports.get = async (page = 1, limit = defaultPaginationLimit) => {
+  let query = Course.find().sort('-createdAt');
+
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+  const total = await Course.countDocuments();
+
+  let pageLimit = limit > maxPaginationLimit ? maxPaginationLimit : limit;
+  query = query.skip(startIndex).limit(pageLimit);
+
+  const courses = await query;
+
+  const pagination = {};
+
+  if (endIndex < total) {
+    pagination.next = {
+      page: page + 1,
+      limit,
+    };
+  }
+
+  if (startIndex > 0) {
+    pagination.prev = {
+      page: page - 1,
+      limit,
+    };
+  }
+
+  return { courses, pagination };
 };
 
 exports.getOne = async id => {
-  const course = await Course.findById(id).populate('lessons');
+  const course = await Course.findById(id)
+    .populate('lessons')
+    .populate('author');
   if (!course) {
     throw new NotFoundError(`Course not found with id of ${id}`);
   }

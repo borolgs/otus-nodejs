@@ -2,11 +2,15 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        <a href="/courses/{{course.id}}">
-          {{course.title}}
-        </a>
+        {{course.title}}
       </h1>
       <h1 class="subtitle">
+        <span class="icon">
+
+          <a href="/courses/{{course.id}}">
+            <i class="fas fa-arrow-left"></i>
+          </a>
+        </span>
         {{lesson.title}}
       </h1>
     </div>
