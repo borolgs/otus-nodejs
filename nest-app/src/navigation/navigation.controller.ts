@@ -25,8 +25,8 @@ export class NavigationController {
   }
 
   @Get('api/v1/navigation/:id')
-  async getOne(@Param('id', ParseIntPipe) id: string): Promise<Navigation> {
-    return this.navigationService.finfOne(id);
+  async getOne(@Param('id', ParseIntPipe) id: number): Promise<Navigation> {
+    return this.navigationService.findOne(id);
   }
 
   @Post('api/v1/navigation/')
@@ -38,7 +38,7 @@ export class NavigationController {
 
   @Patch('api/v1/navigation/:id')
   async update(
-    @Param('id', ParseIntPipe) id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateNavigationDto: UpdateNavigationDto,
   ): Promise<Navigation> {
     return this.navigationService.update(id, updateNavigationDto);

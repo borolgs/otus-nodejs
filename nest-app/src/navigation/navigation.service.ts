@@ -15,7 +15,7 @@ export class NavigatonService {
     return this.navigationModel.findAll();
   }
 
-  async finfOne(id: string): Promise<Navigation> {
+  async findOne(id: number): Promise<Navigation> {
     return this.navigationModel.findOne({ where: { id } });
   }
 
@@ -23,7 +23,10 @@ export class NavigatonService {
     return this.navigationModel.create(navigationDto);
   }
 
-  async update(id: string, navigationDto: UpdateNavigationDto): Promise<any> {
-    return this.navigationModel.update(navigationDto, { where: { id } });
+  async update(id: number, navigationDto: UpdateNavigationDto): Promise<any> {
+    const ids = await this.navigationModel.update(navigationDto, {
+      where: { id },
+    });
+    return this.navigationModel.findOne({ where: { id: ids[0] } });
   }
 }
