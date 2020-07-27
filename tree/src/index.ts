@@ -19,7 +19,7 @@ const run = async () => {
     const dir = path.resolve(argv._[0]);
     const { depth } = argv;
     const tree = new Tree();
-    console.log(tree.draw(dir, depth))
+    console.log(tree.draw(dir, depth));
   } catch (error) {
     console.log(error);
   }
