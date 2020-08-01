@@ -1,0 +1,28 @@
+type Query {
+  navigations: [Navigation!]!
+  navigation(id: Int!): Navigation
+}
+
+type Navigation {
+  id: Int!
+  name: String!
+  url: String!
+  icon: String
+}
+
+type Mutation {
+  updateNavigation(id: Int!, data: UpdateNavigation!): Navigation
+  createNavigation(data: CreateNavigation): Navigation
+}
+
+input CreateNavigation {
+  name: String!
+  url: String!
+  icon: String
+}
+
+input UpdateNavigation {
+  name: String
+  url: String
+  icon: String
+}
